@@ -9,13 +9,30 @@ display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HELGHT))
 
 pygame.display.set_caption("Feed the Dragon!")
 
-dragon_left_image = pygame.image.load("dragon_left.png")
-dragon_left_rect = dragon_left_image.get_rect()
-dragon_left_rect.topleft = (0,0)
+sound_1= pygame.mixer.Sound('sound_1.wav')
+sound_2= pygame.mixer.Sound('sound_2.wav')
 
-dragon_right_image = pygame.image.load("dragon_right.png")
-dragon_right_rect = dragon_right_image.get_rect()
-dragon_right_rect.topright = (600,0)
+sound_1.play()
+pygame.time.delay(2000)
+sound_2.play()
+pygame.time.delay(2000)
+
+sound_2.set_volume(.1)
+sound_2.play()
+
+pygame.mixer.music.load('music.wav')
+
+pygame.mixer.music.play(-1,2.1)
+pygame.time.delay(1000)
+sound_2.play()
+pygame.time.delay(5000)
+pygame.mixer.music.stop()
+
+GREEN = (0,255,0)
+DARKGREEN = (10,50,10)
+BLACK = (0,0,0)
+
+
 
 game_running = True
 while game_running:
@@ -24,11 +41,9 @@ while game_running:
         if ev.type == pygame.QUIT:
             game_running = False
 
-    display_surface.blit(dragon_right_image, dragon_right_rect)
-    display_surface.blit(dragon_left_image, dragon_left_rect)
 
-    pygame.draw.line(display_surface, (255, 255, 255), (0, 75), (WINDOW_WIDTH, 75),4)
 
     pygame.display.update()
 
-pygame.quit()                                                      
+pygame.quit()  
+
