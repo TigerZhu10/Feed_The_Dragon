@@ -9,6 +9,9 @@ display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HELGHT))
 
 pygame.display.set_caption("Feed the Dragon!")
 
+FPS = 60
+clock = pygame.time.Clock()
+
 
 dragon_left_image = pygame.image.load("dragon_left.png")
 dragon_left_rect = dragon_left_image.get_rect()
@@ -21,23 +24,25 @@ while game_running:
         print(ev)
         if ev.type == pygame.QUIT:
             game_running = False
-    
-        if ev.type == pygame.KEYDOWN:
-            if ev.key == pygame.K_LEFT:
-                dragon_left_rect.x -= 20
-            if ev.key == pygame.K_RIGHT:
-                dragon_left_rect.x += 20
-            if ev.key == pygame.K_UP:
-                dragon_left_rect.y -= 20
-            if ev.key == pygame.K_DOWN:
-                dragon_left_rect.y += 20
+        
+    keys = pygame.key.get_pressed()
+    print(keys)
 
+    if keys[pygame.K_LEFT]:
+        dragon_left_rect.x -= 5
+    if keys[pygame.K_RIGHT]:
+        dragon_left_rect.x += 5
+    if keys[pygame.K_UP]:
+        dragon_left_rect.y -= 5
+    if keys[pygame.K_DOWN]:
+        dragon_left_rect.y += 5
+    
+        
     display_surface.fill((0,0,0))
     display_surface.blit(dragon_left_image, dragon_left_rect)
-
-
-    
     
     pygame.display.update()
+
+    clock.tick(FPS)
 
 pygame.quit()  
