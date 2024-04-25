@@ -22,17 +22,27 @@ while game_running:
         print(ev)
         if ev.type == pygame.QUIT:
             game_running = False
-    
-        if ev.type == pygame.MOUSEMOTION:
+
+        if ev.type == pygame.MOUSEBUTTONDOWN:     
             print(ev)
             mouse_x = ev.pos[0]
             mouse_y = ev.pos[1]
             dragon_left_rect.centerx = mouse_x
             dragon_left_rect.centery = mouse_y
-            
+    
+        if ev.type == pygame.MOUSEMOTION and ev.buttons[0] == 1:     
+            print(ev)
+            mouse_x = ev.pos[0]
+            mouse_y = ev.pos[1]
+            dragon_left_rect.centerx = mouse_x
+            dragon_left_rect.centery = mouse_y
 
     display_surface.fill((0,0,0))
     display_surface.blit(dragon_left_image, dragon_left_rect)
+
+           
+            
+
 
     
     
