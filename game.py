@@ -36,6 +36,15 @@ while game_running:
         dragon_left_rect.y -= 5
     if keys[pygame.K_DOWN]:
         dragon_left_rect.y += 5
+
+    if dragon_left_rect.left < 0:
+        dragon_left_rect.left = 0
+    elif dragon_left_rect.right > WINDOW_WIDTH:
+        dragon_left_rect.right = WINDOW_WIDTH
+    if dragon_left_rect.top < 0:
+        dragon_left_rect.top = 0
+    elif dragon_left_rect.bottom > WINDOW_HELGHT:
+        dragon_left_rect.bottom = WINDOW_HELGHT
     
         
     display_surface.fill((0,0,0))
