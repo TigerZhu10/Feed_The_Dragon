@@ -14,6 +14,7 @@ FPS = 60
 clock = pygame.time.Clock()
 
 
+
 sound_1= pygame.mixer.Sound('music.wav')
 sound_1.play(-1)
 
@@ -21,7 +22,7 @@ score_font = pygame.font.SysFont('calibri', 30)
 title_font = pygame.font.SysFont('calibri', 31)
 lives_font = pygame.font.SysFont('calibri', 29)
 
-score_text = score_font.render("Score: 0", True, (255, 255, 255), (0, 0, 0))
+score_text = score_font.render("Score: " + str(), True, (255, 255, 255), (0, 0, 0))
 score_text_rect = score_text.get_rect()
 score_text_rect.topleft = (10,10) 
 
@@ -39,12 +40,12 @@ lives_text_rect.topright = (560,13)
 
 dragon_right_image = pygame.image.load("dragon_right.png")
 dragon_right_rect = dragon_right_image.get_rect()
-dragon_right_rect.center = (WINDOW_WIDTH//2, WINDOW_HEIGHT//2)
+dragon_right_rect.center = (30, 150)
 
 coin_image = pygame.image.load("coin.png")
 coin_rect = coin_image.get_rect()
-coin_rect.center = (WINDOW_WIDTH//2, WINDOW_HEIGHT//2)
-
+coin_rect.center = (620,200)
+coin_speed = 6
 
 game_running = True
 while game_running:
@@ -55,19 +56,26 @@ while game_running:
         
     keys = pygame.key.get_pressed()
     
-
-    if keys[pygame.K_LEFT] and dragon_right_rect.left > 0:
-        dragon_right_rect.x -= 5
-    if keys[pygame.K_RIGHT] and dragon_right_rect.right < WINDOW_WIDTH:
-        dragon_right_rect.x += 5
-    if keys[pygame.K_UP] and dragon_right_rect.top > 0:
+    coin_rect.x -= coin_speed
+    if coin_rect.right < 0:  
+        coin_rect.center = (600,200)
+        coin_rect.y = random.randint(40, 268)   
+    
+    # if keys[pygame.K_LEFT] and dragon_right_rect.left > 0:
+    #     dragon_right_rect.x -= 5
+    # if keys[pygame.K_RIGHT] and dragon_right_rect.right < WINDOW_WIDTH:
+    #     dragon_right_rect.x += 5
+    if keys[pygame.K_UP] and dragon_right_rect.top > 48:
         dragon_right_rect.y -= 5
     if keys[pygame.K_DOWN] and dragon_right_rect.bottom < WINDOW_HEIGHT:
         dragon_right_rect.y += 5
 
     if dragon_right_rect.colliderect(coin_rect):
-        coin_rect.x = random.randint(0, WINDOW_WIDTH - 32)
-        coin_rect.y = random.randint(0, WINDOW_HEIGHT - 32)
+        coin_rect.center = (600,200)
+        coin_rect.y = random.randint(40, 268)
+        coin_speed += 0.5
+        if coin_speed >= 15:
+            coin_speed = 15  
     
         
     display_surface.fill((0,0,0))
@@ -77,7 +85,8 @@ while game_running:
     display_surface.blit(title_text, title_text_rect)
     display_surface.blit(lives_text, lives_text_rect)
     display_surface.blit(coin_image, coin_rect)
-    
+    pygame.draw.line(display_surface, (255,255,255), (0,43), (600,43), 5)
+
     pygame.display.update()
 
     clock.tick(FPS)
