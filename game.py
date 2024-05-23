@@ -58,7 +58,7 @@ while game_running:
     keys = pygame.key.get_pressed()
 
     coin_rect.x -= coin_speed
-    if coin_rect.right < 0:
+    if coin_rect.right < 0:                                    
         coin_rect.center = (WINDOW_WIDTH + 20, random.randint(40, WINDOW_HEIGHT - 40))
         lives -= 1
         lives_text = lives_font.render("lives: " + str(lives), True, (255, 255, 255), (0, 0, 0))
