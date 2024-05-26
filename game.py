@@ -92,6 +92,7 @@ while game_running:
         coin_speed += 0.5
         if coin_speed >= 25:
             coin_speed = 25
+
         score += 1
         score_text = score_font.render("Score: " + str(score), True, (255, 255, 255))
         get_sound.play(0)
