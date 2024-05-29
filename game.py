@@ -43,6 +43,7 @@ lives_text_rect.topright = (WINDOW_WIDTH - 40, 13)
 dragon_right_image = pygame.image.load("dragon_right.png")
 dragon_right_rect = dragon_right_image.get_rect()
 dragon_right_rect.center = (30, 150)
+dragon_speed = 6
 
 coin_image = pygame.image.load("coin.png")
 coin_rect = coin_image.get_rect()
@@ -83,15 +84,18 @@ while game_running:
                 pygame.display.update()
 
     if keys[pygame.K_UP] and dragon_right_rect.top > 48:
-        dragon_right_rect.y -= 6
+        dragon_right_rect.y -= dragon_speed
     if keys[pygame.K_DOWN] and dragon_right_rect.bottom < WINDOW_HEIGHT:
-        dragon_right_rect.y += 6
+        dragon_right_rect.y += dragon_speed
 
     if dragon_right_rect.colliderect(coin_rect):
         coin_rect.center = (WINDOW_WIDTH + 20, random.randint(40, WINDOW_HEIGHT - 40))
         coin_speed += 0.5
+        dragon_speed += 0.2
         if coin_speed >= 25:
             coin_speed = 25
+        if dragon_speed >= 11:
+            dragon_speed = 11
 
         score += 1
         score_text = score_font.render("Score: " + str(score), True, (255, 255, 255))
