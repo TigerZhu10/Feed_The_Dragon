@@ -68,7 +68,7 @@ while game_running:
             sound_1.stop()
             pause = True
             while pause:
-                display_surface.blit(reset_text, reset_text_rect)
+                display_surface.blit(reset_text, reset_text_rect)    
                 for ev in pygame.event.get():
                     if ev.type == pygame.KEYDOWN:
                         sound_1.play(-1)
