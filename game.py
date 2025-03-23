@@ -45,7 +45,7 @@ dragon_right_rect = dragon_right_image.get_rect()
 dragon_right_rect.center = (30, 150)
 dragon_speed = 6
 
-coin_image = pygame.image.load("coin.png")
+coin_image = pygame.image.load("coin.png")   
 coin_rect = coin_image.get_rect()
 coin_rect.center = (WINDOW_WIDTH + 20, 200)
 coin_speed = 13
