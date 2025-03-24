@@ -24,7 +24,7 @@ title_font = pygame.font.SysFont('calibri', 31)
 lives_font = pygame.font.SysFont('calibri', 29)
 reset_font = pygame.font.SysFont('calibri', 40)
 
-reset_text = reset_font.render("Press any key to reset the game", True, (227, 245, 66), (0, 0, 0))
+reset_text = reset_font.render("Press any key to rese   t the game", True, (227, 245, 66), (0, 0, 0))
 reset_text_rect = reset_text.get_rect()
 reset_text_rect.center = (WINDOW_WIDTH // 2, 150)
 
